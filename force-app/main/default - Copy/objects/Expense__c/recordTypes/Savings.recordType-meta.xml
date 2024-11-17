@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Savings</fullName>
+    <active>true</active>
+    <label>Savings</label>
+    <picklistValues>
+        <picklist>Category__c</picklist>
+        <values>
+            <fullName>Savings</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Return_Status__c</picklist>
+        <values>
+            <fullName>Self</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Savings_Type__c</picklist>
+        <values>
+            <fullName>FD</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Mutual Funds</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paytm Bank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,11 @@
+<template>
+    <lightning-card  variant="Narrow"  title={catogory} icon-name="standard:account">
+        <lightning-datatable
+            key-field="Id"
+            columns={columns}
+            data={data}
+            hide-checkbox-column>
+        </lightning-datatable>
+    <div class="slds-text-heading_small" slot="footer">Total : {sumtotal}</div>
+    </lightning-card>
+</template>

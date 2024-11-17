@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Personel use</fullName>
+                <default>false</default>
+                <label>Personel Use</label>
+            </value>
+            <value>
+                <fullName>Enjoyment</fullName>
+                <default>false</default>
+                <label>Enjoyment</label>
+            </value>
+            <value>
+                <fullName>Loan</fullName>
+                <default>false</default>
+                <label>Personnel Loan</label>
+            </value>
+            <value>
+                <fullName>Home</fullName>
+                <default>false</default>
+                <label>Home</label>
+            </value>
+            <value>
+                <fullName>Akshay education</fullName>
+                <default>false</default>
+                <label>Akshay education</label>
+            </value>
+            <value>
+                <fullName>Mummy</fullName>
+                <default>false</default>
+                <label>To Mom</label>
+            </value>
+            <value>
+                <fullName>Home Loan EMI</fullName>
+                <default>false</default>
+                <label>Home Loan EMI</label>
+            </value>
+            <value>
+                <fullName>Savings</fullName>
+                <default>false</default>
+                <label>Savings</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>Shopping</fullName>
+                <default>false</default>
+                <label>Shopping</label>
+            </value>
+            <value>
+                <fullName>New Home</fullName>
+                <default>false</default>
+                <label>New Home</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

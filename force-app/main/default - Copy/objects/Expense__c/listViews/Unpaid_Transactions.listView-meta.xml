@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unpaid_Transactions</fullName>
+    <columns>Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Expense_Amount__c</columns>
+    <columns>Category__c</columns>
+    <columns>Return_Status__c</columns>
+    <columns>Debtor_Person__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Return_Status__c</field>
+        <operation>equals</operation>
+        <value>Not yet</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Expense__c.lend_money</value>
+    </filters>
+    <label>Unpaid Transactions</label>
+</ListView>

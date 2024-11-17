@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>expenses_has_to_be_catagorized</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ISPICKVAL( Return_Status__c , &apos;Self&apos;) , ISPICKVAL( Category__c , &apos;N/A&apos;),!ISCHANGED(  RecordTypeId  ) )</errorConditionFormula>
+    <errorMessage>please provide catagory of expenses</errorMessage>
+</ValidationRule>

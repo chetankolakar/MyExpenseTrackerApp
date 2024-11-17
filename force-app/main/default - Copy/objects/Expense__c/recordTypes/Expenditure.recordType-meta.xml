@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expenditure</fullName>
+    <active>true</active>
+    <label>Expenditure</label>
+    <picklistValues>
+        <picklist>Category__c</picklist>
+        <values>
+            <fullName>Akshay education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enjoyment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Home Loan EMI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Loan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mummy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Personel use</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shopping</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Return_Status__c</picklist>
+        <values>
+            <fullName>Self</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Savings_Type__c</picklist>
+        <values>
+            <fullName>FD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mutual Funds</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

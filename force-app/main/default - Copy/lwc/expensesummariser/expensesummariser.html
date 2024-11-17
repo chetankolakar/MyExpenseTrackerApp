@@ -1,0 +1,224 @@
+<template>
+    <div style="height:500px;">
+    <lightning-card class="slds-p-left_none">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_5-of-6 slds-text-title_bold" style="font-size: 18px;">
+                <span>Overall Expenditure Summary</span>
+            </div>
+            <div  if:false={isrefreshClicked} class="slds-col slds-size_1-of-5 slds-text-title_bold">
+                <lightning-button label="" slot="actions" style="height: 25px" icon-name="utility:refresh" class="refresh-box slds-grid slds-gutters" onclick={handleRefresh}></lightning-button>
+            </div>
+        </div>
+        <div if:false={summarydataexist} class="slds-is-relative" style="height:430px; position:relative"><!--style="height: 260px; position:relative"-->
+            <lightning-spinner  alternative-text="Loading" variant="brand" size="small"></lightning-spinner>
+        </div>
+        <div if:true={summarydataexist} style="height: 290px; position:relative">
+            <div class="slds-grid slds-gutters" style='background-color: #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                <span >Contribution to Family</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.familyContribution}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.familycontributionpercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Personel Expenditure</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.ownExpenditure}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.ownExpenditurepercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Total Loan Paid</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.totalLoan}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.loanpercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Shopping</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.totalShopping}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.totalShoppingPercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Other</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.otherExpenditure}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.otherpercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                    <span>New Home Expenditure(A)</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.newHomeExpenditure}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.newHomePercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                    <span>Home loan paid(B)</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.newHomeLoanEMI}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.newHomeEmiPercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e6f419f6'>
+                <div class="slds-col slds-size_3-of-5">
+                    <span>Total new Home(A+B)</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.newHomeTotalExpenditure}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.newHomeTotalPercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                    <span>Number of EMI's paid</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                    <span><lightning-formatted-number value={overAllSummary.totalHomeLoanEmis}></lightning-formatted-number></span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Contribution to Akshay</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.akshayTotal}></lightning-formatted-number></span>
+                <span>(<lightning-formatted-number value={overAllSummary.akshayPercent}></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Present Month Expenses</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.thisMonthTotal}></lightning-formatted-number></span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Lented Money</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.outStandingamt}></lightning-formatted-number></span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Average Family</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.monthlyAverageFamily}></lightning-formatted-number></span>
+                <span>/Month</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Average Personel</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.monthlyAveragePersonel}></lightning-formatted-number></span>
+                <span>/Month</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #e1956ffe'>
+                <div class="slds-col slds-size_3-of-5">
+                <span>Average Earning</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                <span>₹ <lightning-formatted-number value={overAllSummary.monthlyEarning}></lightning-formatted-number></span>
+                <span>/Month</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #94e29ae2'>
+                <div class="slds-col slds-size_3-of-5 slds-text-title_bold">
+                    <span style="color:rgba(233, 104, 13, 0.989)">Total Expenditure</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                    <span>₹ <lightning-formatted-number value={netExpenditure} style="color:rgba(233, 104, 13, 0.989)"></lightning-formatted-number></span>
+                    <span>(<lightning-formatted-number value={totalExpenditurepercent} style="color:rgba(233, 104, 13, 0.989)"></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #94e29ae2'>
+                <div class="slds-col slds-size_3-of-5 slds-text-title_bold">
+                    <span style="color:rgba(4, 53, 3, 0.902)">Total Savings</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                    <span>₹ <lightning-formatted-number value={totalSaving} style="color:rgba(4, 53, 3, 0.902)"></lightning-formatted-number></span>
+                    <span>(<lightning-formatted-number value={savingspercent} style="color:rgba(4, 53, 3, 0.902)"></lightning-formatted-number>%)</span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #94e29ae2'>
+                <div class="slds-col slds-size_3-of-5 slds-text-title_bold">
+                    <span style="color:rgba(4, 53, 3, 0.902)">Mutual fund returns as on <span>(<lightning-formatted-date-time value={overAllSummary.returnUpdatedDate}></lightning-formatted-date-time>)</span></span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                    <span>₹ <lightning-formatted-number value={overAllSummary.mutualFundReturn} style="color:rgba(4, 53, 3, 0.902)"></lightning-formatted-number></span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color: #94e29ae2'>
+                <div class="slds-col slds-size_3-of-5 slds-text-title_bold">
+                    <span style="color:rgba(4, 53, 3, 0.902)">Total Overall savings</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                    <span>₹ <lightning-formatted-number value={overAllSummary.overAllSavings} style="color:rgba(4, 53, 3, 0.902)"></lightning-formatted-number></span>
+                </div>
+            </div>
+            <div class="slds-grid slds-gutters" style='background-color:  #94e29ae2'>
+                <div class="slds-col slds-size_3-of-5 slds-text-title_bold">
+                    <span style="color:rgba(16, 62, 225, 0.989)">Total Earning</span>
+                </div>
+                <div class="slds-col slds-size_2-of-5 slds-text-title_bold">
+                    <span>₹ <lightning-formatted-number value={sumtotal} style="color:rgba(16, 62, 225, 0.989)"></lightning-formatted-number></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+    <!--template if:false={addMultipleExpenses}>
+        <div class="slds-m-top_small slds-m-bottom_medium">
+            <Brand variant: Identifies the primary action in a group of buttons -->
+            <!--lightning-button variant="brand" label="Add Expenses" title="Primary action" onclick={handleMultipleExpensesClick} class="slds-p-left_none"></lightning-button>
+        </div>
+    </template>
+    <template if:true={addMultipleExpenses}>
+        <div  class="slds-p-top_large">
+            <c-create-multiple-expenses onclosemodal={closemodal}></c-create-multiple-expenses>
+        </div>
+    </template-->
+    <!--lightning-card style="min-height: 200px; max-height: 400px" class="slds-p-top_small">
+        <div >
+            <lightning-input type="date" name="input8" label="Start Date" value={startdate} min="2021-05-01" onchange={startDateChange} ></lightning-input>
+        </div>
+        <div>
+            <lightning-input type="date" name="input8" label="End Date" value={enddate} min="2021-05-01"  onchange={endDateChange}></lightning-input>
+        </div>
+    </lightning-card>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+        <Brand variant: Identifies the primary action in a group of buttons -->
+        <!--lightning-button variant="brand" label="Show Expenses" title="Primary action" onclick={handleClick} class="slds-p-left_none" disabled={disablebutton}></lightning-button>
+    </div>
+    <template if:true={expensedataexist}>
+        <template for:each={catogories} for:item="catogory">
+            <c-expensetable
+            catogory={catogory} key={catogory} expensedata={expensedata}>
+            </c-expensetable>
+        </template>
+    </template-->
+    </div>
+</template>

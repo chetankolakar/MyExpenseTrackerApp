@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>category_not_applicable_to</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT( ISPICKVAL( Category__c , &apos;N/A&apos;) ) , OR( ISPICKVAL( Return_Status__c , &apos;Not yet&apos;) ,ISPICKVAL( Return_Status__c , &apos;Returned&apos;)) , !ISCHANGED(  RecordTypeId  ) 
+)</errorConditionFormula>
+    <errorMessage>the transactions with return status &apos;not yet&apos; or &apos;returned&apos; can not be expenses</errorMessage>
+</ValidationRule>

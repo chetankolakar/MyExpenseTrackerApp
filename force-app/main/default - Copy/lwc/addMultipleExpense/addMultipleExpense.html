@@ -1,0 +1,15 @@
+<template>
+    <lightning-card style="min-height: 200px; max-height: 400px" class="slds-p-top_small">
+        <template if:true={addMultipleExpenses}>
+            <div  class="slds-p-top_large">
+                <c-create-multiple-expenses onclosemodal={closemodal}></c-create-multiple-expenses>
+            </div>
+        </template>
+        <template if:false={addMultipleExpenses}>
+            <div class="slds-m-top_small slds-m-bottom_medium">
+                <!-- Brand variant: Identifies the primary action in a group of buttons -->
+                <lightning-button variant="brand" label="Add Expenses" title="Primary action" onclick={handleMultipleExpensesClick} class="slds-p-left_none"></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>

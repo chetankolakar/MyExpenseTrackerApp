@@ -1,0 +1,21 @@
+<template>
+    <lightning-card style="min-height: 200px; max-height: 400px" class="slds-p-top_small">
+        <div >
+            <lightning-input type="date" name="input8" label="Start Date" value={startdate} min="2021-05-01" onchange={startDateChange} ></lightning-input>
+        </div>
+        <div>
+            <lightning-input type="date" name="input8" label="End Date" value={enddate} min="2021-05-01"  onchange={endDateChange}></lightning-input>
+        </div>
+    </lightning-card>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+        <!-- Brand variant: Identifies the primary action in a group of buttons -->
+        <lightning-button variant="brand" label="Show Expenses" title="Primary action" onclick={handleClick} class="slds-p-left_none" disabled={disablebutton}></lightning-button>
+    </div>
+    <template if:true={expensedataexist}>
+        <template for:each={catogories} for:item="catogory">
+            <c-expensetable
+            catogory={catogory} key={catogory} expensedata={expensedata}>
+            </c-expensetable>
+        </template>
+    </template>
+</template>

@@ -1,0 +1,10 @@
+.header{
+    display: inline-block;
+  }
+  .playerOne{
+      margin-left: 0;
+   }
+  
+  .playerTwo{
+    margin-right: 0;
+  }
